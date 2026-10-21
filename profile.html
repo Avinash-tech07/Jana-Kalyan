@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile — Jana Kalyan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <style>
+    .photo-upload { display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md); }
+    .photo-upload .avatar { width: 72px; height: 72px; font-size: 1.4rem; }
+    .photo-upload .avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <aside class="sidebar">
+      <a href="index.html" class="brand">
+        <span class="seal">JK</span>
+        Jana Kalyan
+      </a>
+      <span class="sidebar-section-label">Menu</span>
+      <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
+      <a href="loans.html" class="sidebar-link">🪙 Kalyan Loan</a>
+      <a href="profile.html" class="sidebar-link active">🧾 Profile &amp; Nominee</a>
+      <div class="sidebar-footer">
+        <a href="index.html" id="logout-btn" class="sidebar-link">🚪 Log out</a>
+      </div>
+    </aside>
+
+    <header class="topbar">
+      <button class="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
+      <h3 class="mb-0">Profile &amp; Nominee</h3>
+      <div class="user-chip"><div class="avatar">JK</div></div>
+    </header>
+
+    <main class="dash-main">
+      <section class="panel" style="max-width:640px;">
+        <div class="panel-head"><h3>Member profile</h3></div>
+
+        <div class="photo-upload">
+          <div class="avatar" id="photo-preview">JK</div>
+          <div>
+            <label for="photo-input" class="btn btn-outline btn-sm">Change photo</label>
+            <input type="file" id="photo-input" accept="image/*" style="display:none;" />
+          </div>
+        </div>
+
+        <form id="profile-form">
+          <div class="form-group">
+            <label for="fullName">Full name</label>
+            <input class="form-control" type="text" id="fullName" name="fullName" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-control" type="email" id="email" name="email" disabled />
+            <div class="form-hint">Email is linked to your login and can't be changed here.</div>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone number</label>
+            <input class="form-control" type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="98XXXXXXXX" />
+          </div>
+
+          <h3 class="mt-lg">Nominee details</h3>
+          <div class="form-group">
+            <label for="nomineeName">Nominee name</label>
+            <input class="form-control" type="text" id="nomineeName" name="nomineeName" />
+          </div>
+          <div class="form-group">
+            <label for="nomineeId">Nominee ID details (Aadhaar / Voter ID)</label>
+            <input class="form-control" type="text" id="nomineeId" name="nomineeId" />
+          </div>
+
+          <button type="submit" class="btn btn-primary">Save changes</button>
+          <div id="profile-msg" class="auth-msg"></div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/profile.js"></script>
+  <script>
+    document.getElementById("logout-btn").addEventListener("click", function (e) {
+      e.preventDefault();
+      localStorage.removeItem("jk_session");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

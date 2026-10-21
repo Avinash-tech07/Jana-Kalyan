@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Member Dashboard — Jana Kalyan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <!-- ============================ SIDEBAR ============================ -->
+    <aside class="sidebar">
+      <a href="index.html" class="brand">
+        <span class="seal">JK</span>
+        Jana Kalyan
+      </a>
+      <span class="sidebar-section-label">Menu</span>
+      <a href="dashboard.html" class="sidebar-link active">📊 Dashboard</a>
+      <a href="loans.html" class="sidebar-link">🪙 Kalyan Loan</a>
+      <a href="profile.html" class="sidebar-link">🧾 Profile &amp; Nominee</a>
+
+      <div class="sidebar-footer">
+        <a href="index.html" id="logout-btn" class="sidebar-link">🚪 Log out</a>
+      </div>
+    </aside>
+
+    <!-- ============================ TOPBAR ============================ -->
+    <header class="topbar">
+      <button class="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
+      <h3 class="mb-0">Member Dashboard</h3>
+      <div class="user-chip">
+        <div class="avatar" id="member-photo">JK</div>
+        <div>
+          <div style="font-weight:600;" id="member-name">—</div>
+          <div class="form-hint mb-0" id="member-id">—</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============================ MAIN ============================ -->
+    <main class="dash-main">
+
+      <!-- Stat cards -->
+      <div class="dash-grid">
+        <div class="stat-card">
+          <div class="stat-label">Current balance</div>
+          <div class="stat-value" id="stat-balance">₹0</div>
+          <div class="stat-change up">Includes quarterly interest</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total deposits</div>
+          <div class="stat-value" id="stat-deposits">₹0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Member since</div>
+          <div class="stat-value" id="stat-since" style="font-size:1.2rem;">—</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <!-- "Account statement" panel = full transaction history -->
+        <section class="panel">
+          <div class="panel-head">
+            <h3>Account statement</h3>
+            <span class="badge">Full history</span>
+          </div>
+          <div class="table-scroll">
+            <table class="ledger-table">
+              <thead>
+                <tr><th>Date</th><th>Description</th><th>Type</th><th>Amount</th></tr>
+              </thead>
+              <tbody id="account-statement-body">
+                <tr><td colspan="4">Loading…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Quick deposit + "Recent Transaction" panel = latest deposits only -->
+        <div>
+          <section class="panel">
+            <div class="panel-head"><h3>Make a deposit</h3></div>
+            <form id="deposit-form">
+              <div class="form-group">
+                <label for="deposit-amount">Amount (₹)</label>
+                <input class="form-control" type="number" id="deposit-amount" name="amount" min="1" required />
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Deposit</button>
+            </form>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h3>Recent Transaction</h3>
+              <span class="badge badge-accent">Latest deposits</span>
+            </div>
+            <div class="table-scroll">
+              <table class="ledger-table">
+                <thead><tr><th>Date</th><th>Description</th><th>Amount</th></tr></thead>
+                <tbody id="recent-transaction-body">
+                  <tr><td colspan="3">Loading…</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script>
+    document.getElementById("logout-btn").addEventListener("click", function (e) {
+      e.preventDefault();
+      localStorage.removeItem("jk_session");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

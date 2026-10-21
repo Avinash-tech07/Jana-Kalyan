@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalyan Loan — Jana Kalyan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <aside class="sidebar">
+      <a href="index.html" class="brand">
+        <span class="seal">JK</span>
+        Jana Kalyan
+      </a>
+      <span class="sidebar-section-label">Menu</span>
+      <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
+      <a href="loans.html" class="sidebar-link active">🪙 Kalyan Loan</a>
+      <a href="profile.html" class="sidebar-link">🧾 Profile &amp; Nominee</a>
+      <div class="sidebar-footer">
+        <a href="index.html" id="logout-btn" class="sidebar-link">🚪 Log out</a>
+      </div>
+    </aside>
+
+    <header class="topbar">
+      <button class="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
+      <h3 class="mb-0">Loans</h3>
+      <div class="user-chip"><div class="avatar">JK</div></div>
+    </header>
+
+    <main class="dash-main">
+      <div class="two-col">
+
+        <!-- ============================ LOAN TYPES ============================ -->
+        <section class="panel">
+          <div class="panel-head"><h3>Available loan types</h3></div>
+          <div class="loan-list">
+            <div class="loan-option">
+              <div>
+                <div class="loan-name">Kalyan loan</div>
+                <div class="form-hint mb-0">Formerly "Personal loan" — our flagship member loan.</div>
+              </div>
+              <div class="loan-rate">13% p.a.</div>
+            </div>
+            <!-- Other loan types remain visible for transparency but are disabled,
+                 per spec: "Other loan options can be kept visible but must be disabled." -->
+            <div class="loan-option disabled">
+              <div>
+                <div class="loan-name">Vehicle loan</div>
+                <div class="form-hint mb-0">Currently unavailable</div>
+              </div>
+              <div class="loan-rate">—</div>
+            </div>
+            <div class="loan-option disabled">
+              <div>
+                <div class="loan-name">Education loan</div>
+                <div class="form-hint mb-0">Currently unavailable</div>
+              </div>
+              <div class="loan-rate">—</div>
+            </div>
+            <div class="loan-option disabled">
+              <div>
+                <div class="loan-name">Housing loan</div>
+                <div class="form-hint mb-0">Currently unavailable</div>
+              </div>
+              <div class="loan-rate">—</div>
+            </div>
+          </div>
+
+          <div class="panel-head mt-lg"><h3>Apply for a Kalyan loan</h3></div>
+          <form id="loan-form">
+            <div class="form-group">
+              <label for="loan-amount">Loan amount</label>
+              <select class="form-control" id="loan-amount" name="amount">
+                <option value="6000">₹6,000</option>
+                <option value="12000">₹12,000</option>
+                <option value="18000">₹18,000</option>
+                <option value="24000" selected>₹24,000</option>
+                <option value="60000">₹60,000</option>
+                <option value="360000">₹3,60,000 and above</option>
+              </select>
+              <div class="form-hint">Available durations change based on the amount you choose.</div>
+            </div>
+
+            <div class="form-group">
+              <label for="loan-duration">Duration</label>
+              <select class="form-control" id="loan-duration" name="duration"></select>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Submit application</button>
+            <div id="loan-msg" class="auth-msg"></div>
+          </form>
+        </section>
+
+        <!-- ============================ SUMMARY ============================ -->
+        <section class="panel">
+          <div class="panel-head"><h3>Repayment summary</h3></div>
+          <div class="passbook-card" style="padding:var(--space-md);">
+            <div id="loan-summary"><!-- filled by loans.js --></div>
+          </div>
+          <p class="form-hint mt-lg mb-0">This is an estimate using simple interest at 13% p.a. Final terms are confirmed after admin review.</p>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/loans.js"></script>
+  <script>
+    document.getElementById("logout-btn").addEventListener("click", function (e) {
+      e.preventDefault();
+      localStorage.removeItem("jk_session");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — Jana Kalyan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <aside class="sidebar">
+      <a href="index.html" class="brand">
+        <span class="seal">JK</span>
+        Jana Kalyan
+      </a>
+      <span class="sidebar-section-label">Admin</span>
+      <a href="admin.html" class="sidebar-link active">🛡️ Members overview</a>
+      <div class="sidebar-footer">
+        <a href="index.html" id="logout-btn" class="sidebar-link">🚪 Log out</a>
+      </div>
+    </aside>
+
+    <header class="topbar">
+      <button class="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
+      <h3 class="mb-0">Admin Dashboard</h3>
+      <div class="user-chip">
+        <div class="avatar">A</div>
+        <div style="font-weight:600;">Society Admin</div>
+      </div>
+    </header>
+
+    <main class="dash-main">
+      <div class="dash-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total members</div>
+          <div class="stat-value" id="stat-total-members">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total deposits (all-time)</div>
+          <div class="stat-value" id="stat-total-deposits">₹0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total balance held</div>
+          <div class="stat-value" id="stat-total-balance">₹0</div>
+        </div>
+      </div>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h3>Every member's deposit &amp; balance</h3>
+          <input class="form-control" style="max-width:220px;" type="text" id="member-search" placeholder="Search by name or ID" />
+        </div>
+        <div class="table-scroll">
+          <table class="ledger-table">
+            <thead>
+              <tr><th>Member ID</th><th>Name</th><th>Contact</th><th>Total deposits</th><th>Current balance</th></tr>
+            </thead>
+            <tbody id="members-body">
+              <tr><td colspan="5">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+  <script>
+    document.getElementById("logout-btn").addEventListener("click", function (e) {
+      e.preventDefault();
+      localStorage.removeItem("jk_session");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
